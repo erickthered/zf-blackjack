@@ -1,0 +1,44 @@
+<?php if ($this->isClosed) { ?>
+	<div class="messageBanner">
+	    <div class="message">
+	        <div class="bust"><?= ($this->outcome) ?></div>
+	    </div>
+	    <div class="playButton">
+	        <a href="<?php echo $this->baseUrl() ?>/index/play">
+	            <img src="<?php echo $this->baseUrl() ?>/images/play.png" class="playButton" alt="Play">
+	        </a>
+	    </div>
+	    <div class="bannerLinks">
+	        <a href="<?php echo $this->baseUrl() ?>/index/scores">Show your scores...</a>
+	        <a href="<?php echo $this->baseUrl() ?>/index/play">Reset this game!</a>
+	    </div>
+	</div>
+	<div style="position: absolute; left: 0pt; top: 323px; background-color: Black;
+	    z-index: 10; width: 1920px; height: 100px; display: block;">
+	</div>
+<?php } ?>
+<script>
+$(document).ready(function() {
+	$.ajax({
+		url: baseUrl + '/partials/stats'
+	}).done(function(data) {
+		$('#stats').html(data);
+	});
+
+	$.ajax({
+		url: baseUrl + '/partials/player'
+	}).done(function(data) {
+		$('#playerContainer').html(data);
+	});
+
+	$.ajax({
+		url: baseUrl + '/partials/dealer'
+	}).done(function(data) {
+		$('#dealerContainer').html(data);
+	});
+	<?php if ($this->isClosed) { ?>
+    $('#input1').hide();
+    $('#input2').hide();	
+	<?php } ?>
+});
+</script>

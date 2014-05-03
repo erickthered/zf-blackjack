@@ -1,0 +1,15 @@
+<div id="dealer-score" class="score">
+	<?php if ($this->isClosed) { ?>
+		<?= $this->dealer->getHandValue(); ?>
+	<?php } else { ?>
+		?
+	<?php } ?>
+</div>
+<div style="padding:34px;">
+	<?php
+	$first = true;
+	foreach($this->dealer->getHand() as $card) { 
+		echo $card->getImage(!$first && !$this->isClosed);
+		$first = false;
+	} ?>
+</div>

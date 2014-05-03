@@ -1,0 +1,13 @@
+<p>
+	<label>Wins</label><span><?= $this->stats->getWins() ?>
+	(<?= round($this->stats->getWins()/$this->stats->getTotal()*100, 2); ?>%)</span>
+</p>
+<p>
+    <label>Draws</label><span><?= $this->stats->getDraws() ?>
+	(<?= round($this->stats->getDraws()/$this->stats->getTotal()*100, 2); ?>%)</span>
+</p>
+<p>
+    <label>Looses</label><span><?= $this->stats->getLooses() ?>
+	(<?= round($this->stats->getLooses()/$this->stats->getTotal()*100, 2); ?>%)</span>
+</p>
+<a href="<?=  $this->baseUrl() ?>/index/scores">Show your scores...</a>

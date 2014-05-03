@@ -1,0 +1,33 @@
+<?php $gameCount = 0; ?>
+<div class="scoreHistory">
+    <table>
+        <tbody>
+            <tr class="header">
+                <td>Game</td>
+                <td>Player</td>
+                <td>Dealer</td>
+                <td>Result</td>
+            </tr>
+            <?php foreach($this->results as $result) { ?>
+                <tr>
+                    <td><?= ++$gameCount ?></td>
+                    <td><?= $result['player'] ?></td>
+                    <td><?= $result['dealer'] ?></td>
+                    <td><?= $result['outcome'] ?></td>
+                </tr>
+            <?php } ?>
+        </tbody>
+    </table>
+    <a href="<?php echo $this->baseUrl() ?>/game/play">
+        <img src="<?php echo $this->baseUrl() ?>/images/play.png" class="playButton" alt="Play">
+    </a>
+</div>
+<div style="position: absolute; left: 0pt; top: 323px; background-color: Black; z-index: 10;
+    width: 1920px; height: 200px; display: block;">
+</div>
+<script>
+$(document).ready(function() {
+    $('#input1').hide();
+    $('#input2').hide();
+});
+</script>

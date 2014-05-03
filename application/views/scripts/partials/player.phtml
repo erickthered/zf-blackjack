@@ -1,0 +1,9 @@
+<div id="player-score" class="score">
+	<?= $this->player->getHandValue() ?>
+</div>
+<div style="padding:34px;">
+	<?php
+	foreach($this->player->getHand() as $card) { 
+		echo $card->getImage();
+	} ?>
+</div>
