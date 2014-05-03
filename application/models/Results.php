@@ -1,16 +1,44 @@
 <?php
 
+/**
+ * 
+ */
 class Application_Model_Results
 {
+	/**
+	 * [$wins description]
+	 * @var integer
+	 */
 	protected $wins = 0;
+	/**
+	 * [$looses description]
+	 * @var integer
+	 */
 	protected $looses = 0;
+	/**
+	 * [$draws description]
+	 * @var integer
+	 */
 	protected $draws = 0;
+	/**
+	 * [$results description]
+	 * @var integer
+	 */
 	protected $results = 0;
 
+	/**
+	 * [__construct description]
+	 */
 	function __construct() {
 		$this->results = array();
 	}
 
+	/**
+	 * [getOutcome description]
+	 * @param  [type] $player [description]
+	 * @param  [type] $dealer [description]
+	 * @return [type]         [description]
+	 */
 	public function getOutcome($player, $dealer)
 	{
 		$outcome = 'draw';
@@ -31,6 +59,12 @@ class Application_Model_Results
 		return $outcome;	
 	}
 
+	/**
+	 * [save description]
+	 * @param  [type] $player [description]
+	 * @param  [type] $dealer [description]
+	 * @return [type]         [description]
+	 */
 	public function save($player, $dealer)
 	{
 		$outcome = $this->getOutcome($player, $dealer);
@@ -53,26 +87,64 @@ class Application_Model_Results
 		);		
 	}
 
-	public function getWins() 
+	/**
+	 * [getWins description]
+	 * @param  boolean $asPercent [description]
+	 * @return [type]             [description]
+	 */
+	public function getWins($asPercent = false) 
 	{
-		return $this->wins;
+		if (!$asPercent) {
+			return $this->wins;
+		}
+		$total = $this->getTotal();
+		if (0 == $total) return 0;
+		return round($this->wins/$total*100, 2);
 	}
 
-	public function getLooses()
+	/**
+	 * [getLooses description]
+	 * @param  boolean $asPercent [description]
+	 * @return [type]             [description]
+	 */
+	public function getLooses($asPercent = false)
 	{
-		return $this->looses;
+		if (!$asPercent) {
+			return $this->looses;
+		}
+		$total = $this->getTotal();
+		if (0 == $total) return 0;
+		return round($this->wins/$total*100, 2);
 	}
 
-	public function getDraws()
+	/**
+	 * [getDraws description]
+	 * @param  boolean $asPercent [description]
+	 * @return [type]             [description]
+	 */
+	public function getDraws($asPercent = false)
 	{
-		return $this->draws;
+		if (!$asPercent) {
+			return $this->draws;
+		}
+		$total = $this->getTotal();
+		if (0 == $total) return 0;
+		return round($this->wins/$total*100, 2);		
 	}
 
+	/**
+	 * [getTotal description]
+	 * @return [type] [description]
+	 */
 	public function getTotal()
 	{
 		return $this->wins + $this->looses + $this->draws;
 	}
 
+	/**
+	 * [getHistory description]
+	 * @return [type] [description]
+	 */
 	public function getHistory()
 	{
 		return $this->results;
